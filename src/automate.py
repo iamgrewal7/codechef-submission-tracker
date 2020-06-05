@@ -13,7 +13,6 @@ def write_to_csv(submissions):
     for submission in submissions:
       writer.writerow(submission)
 
-
 def run_selenium():
   # Store all submission data after scraping
   submissions = [] 
