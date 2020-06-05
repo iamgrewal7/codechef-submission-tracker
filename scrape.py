@@ -4,19 +4,6 @@ import os
 from texttable import Texttable
 from datetime import datetime
 
-# class Results(Enum):
-#   WA = 1
-#   AC = 2
-#   TLE = 3
-#   PA = 4
-#   CE = 5
-#   RE = 6
-
-# RESULT_MAP = {
-#   'wrong answer': Results.WA,
-#   'time limit exceeded': Results.TLE,
-# }
-
 def start_scraping():
   submissions = []
   for page in os.listdir('codechef/'):
