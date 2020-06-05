@@ -17,7 +17,6 @@ def run_selenium():
   driver.get(f"https://www.codechef.com/users/{os.getenv('USERNAME')}")
   sleep(1)
 
-
   print(f"On {os.getenv('USERNAME')} profile page")
 
   try:
