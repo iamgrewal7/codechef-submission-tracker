@@ -1,8 +1,15 @@
-from bs4 import BeautifulSoup
+import csv
+from datetime import datetime
 from enum import Enum
 import os
-from texttable import Texttable
-from datetime import datetime
+from bs4 import BeautifulSoup
+
+def write_to_csv(submissions):
+  with open('output/data.csv', 'w') as csv_file:
+    writer = csv.writer(csv_file)
+    writer.writerow(['Time', 'Problem', 'Result', 'Language'])
+    for submission in submissions:
+      writer.writerow(submission)
 
 def start_scraping():
   submissions = []
@@ -35,12 +42,10 @@ def start_scraping():
     times = []
     for i in range(0, len(all_tds), 4):
       times += [datetime.strptime(all_tds[i].contents[0], '%I:%M %p %d/%m/%y')]
-
+    
+    # Put everything together
     submissions += [[t, p, r, l] for t, p, r, l in zip(times, problems, results, languages)]
 
+  # Sort and write to csv
   submissions.sort(reverse=True)
-  table = Texttable()
-  table.add_row(['Time', 'Problem', 'Result','Language'])
-  for t, p, r, l in submissions:
-    table.add_row([t, p, r, l])
-  print(table.draw())
+  write_to_csv(submissions)
