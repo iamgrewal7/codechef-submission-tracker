@@ -30,7 +30,10 @@ def start_scraping(page_source):
   # Get time of submission used
   times = []
   for i in range(0, len(all_tds), 4):
-    times += [datetime.strptime(all_tds[i].contents[0], '%I:%M %p %d/%m/%y')]
+    try:
+      times += [datetime.strptime(all_tds[i].contents[0], '%I:%M %p %d/%m/%y')]
+    except Exception as e:
+      times += [""]
   
   # Put everything together
   return [[t, p, r, l] for t, p, r, l in zip(times, problems, results, languages)]

@@ -41,4 +41,4 @@ def run_selenium():
       sleep(1)
   except Exception as error:
     driver.close()
-    write_to_csv(sorted(submissions))
+    write_to_csv(submissions)
